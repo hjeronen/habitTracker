@@ -1,8 +1,16 @@
-# React + Vite
+# HabitTracker
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A simple habit tracking application.
 
-Currently, two official plugins are available:
+## Running the application
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+This React-app was created with Vite. To run the application:
+
+1. Install [Node.js](https://nodejs.org/en).
+    - Open command line and make sure node is installed with e.g. `node -v`
+2. Download the project code
+    - run `git clone git@github.com:hjeronen/habitTracker.git`
+    - or download zip-folder
+3. On command line, navigate to project root folder (where the file 'package.json' is) and install dependencies with `npm install`.
+4. Run `npm run dev`, and the app should open up at http://localhost:5173/.
+
