@@ -1,3 +1,5 @@
+import Home from './components/Home'
+
 const App = () => {
   const activities = [
     {
@@ -9,9 +11,7 @@ const App = () => {
   return (
     <div>
       <h1>HabitTracker</h1>
-      <div>
-        {activities.map(activity => <li key={activity.id}>{activity.name}</li>)}
-      </div>
+      <Home activities={activities} />
     </div>
   )
 }
