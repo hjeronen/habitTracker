@@ -1,0 +1,15 @@
+{
+  "activities": [
+    {
+      "id": 1,
+      "name": "Reading",
+      "data": [
+       {
+        "type": "Pages",
+        "unit": "pages",
+        "value": 0
+       } 
+      ]
+    }
+  ]
+}
