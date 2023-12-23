@@ -1,3 +1,5 @@
+import Habit from './Habit'
+
 const Home = ({ habits, deleteHabit, selectHabit }) => {
   return (
     <div>
@@ -5,7 +7,7 @@ const Home = ({ habits, deleteHabit, selectHabit }) => {
         ? <div>No tracked activities yet.</div>
         : habits.map(habit =>
           <div key={habit.id}>
-            {habit.name}
+            <Habit habit={habit} />
             <button onClick={() => deleteHabit(habit.id)}>Delete</button>
             <button onClick={() => selectHabit(habit)}>Update</button>
           </div>
