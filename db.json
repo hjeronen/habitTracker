@@ -1,14 +1,25 @@
 {
-  "activities": [
+  "habits": [
     {
       "id": 1,
       "name": "Reading",
       "data": [
-       {
-        "type": "Pages",
-        "unit": "pages",
-        "value": 0
-       } 
+        {
+          "type": "Pages",
+          "unit": "pages",
+          "value": 0
+        }
+      ]
+    },
+    {
+      "id": 2556,
+      "name": "Running",
+      "data": [
+        {
+          "type": "default",
+          "unit": "test",
+          "value": 0
+        }
       ]
     }
   ]

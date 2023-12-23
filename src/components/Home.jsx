@@ -1,10 +1,15 @@
-const Home = ({ activities }) => {
+const Home = ({ habits, deleteHabit, selectHabit }) => {
   return (
     <div>
-      {activities.length === 0
+      {habits.length === 0
         ? <div>No tracked activities yet.</div>
-        : activities.map(activity =>
-          <li key={activity.id}>{activity.name}</li>)
+        : habits.map(habit =>
+          <div key={habit.id}>
+            {habit.name}
+            <button onClick={() => deleteHabit(habit.id)}>Delete</button>
+            <button onClick={() => selectHabit(habit)}>Update</button>
+          </div>
+        )
       }
     </div>
   )
