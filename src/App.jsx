@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Card, Container, Navbar } from 'react-bootstrap'
+import { Button, Card, Container, Navbar } from 'react-bootstrap'
 import habitService from './services/habits'
 import Home from './components/Home'
 import HabitForm from './components/HabitForm'
@@ -8,6 +8,7 @@ import './styles.css'
 const App = () => {
   const [habits, setHabits] = useState([])
   const [selected, setSelected] = useState(null)
+  const [view, setView] = useState('home')
 
   useEffect(() => {
     habitService
@@ -55,6 +56,26 @@ const App = () => {
     }
   }
 
+  const renderView = () => {
+    switch(view) {
+      case 'form':
+        return <HabitForm habit={selected} createNew={createNew} updateHabit={updateHabit} />
+      default:
+        return <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} />
+    }
+  }
+
+  const renderButtons = () => {
+    switch(view) {
+      case 'home':
+        return <Button onClick={() => setView('form')}>Add new</Button>
+      case 'form':
+        return <Button onClick={() => setView('home')}>Cancel</Button>
+      default:
+        return null
+    }
+  }
+
   return (
     <div>
       <Navbar bg='dark'>
@@ -63,8 +84,10 @@ const App = () => {
         </Container>
       </Navbar>
       <Container>
-        <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} />
-        <HabitForm habit={selected} createNew={createNew} updateHabit={updateHabit} />
+        {renderView()}
+      </Container>
+      <Container>
+        {renderButtons()}
       </Container>
     </div>
   )
