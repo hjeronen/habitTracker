@@ -1,19 +1,30 @@
+import { Card, Container, Col, Button, Row } from 'react-bootstrap'
 import Habit from './Habit'
 
 const Home = ({ habits, deleteHabit, selectHabit }) => {
   return (
-    <div>
+    <Card>
       {habits.length === 0
-        ? <div>No tracked activities yet.</div>
+        ? <Card>No tracked activities yet.</Card>
         : habits.map(habit =>
-          <div key={habit.id}>
-            <Habit habit={habit} />
-            <button onClick={() => deleteHabit(habit.id)}>Delete</button>
-            <button onClick={() => selectHabit(habit)}>Update</button>
-          </div>
+          <Card key={habit.id} className='habit-card'>
+            <Container>
+              <Row>
+                <Col xs={12} md={8} className='habit'>
+                  <Habit habit={habit} />
+                </Col>
+                <Col xs={3} md={2} className='button-column'>
+                  <Button onClick={() => deleteHabit(habit.id)}>Delete</Button>
+                </Col>
+                <Col xs={3} md={2} className='button-column'>
+                  <Button onClick={() => selectHabit(habit)}>Update</Button>
+                </Col>
+              </Row>
+            </Container>
+          </Card>
         )
       }
-    </div>
+    </Card>
   )
 }
 

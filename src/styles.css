@@ -1,0 +1,26 @@
+.card {
+    margin: 20px;
+    padding: 10px;
+    
+}
+
+.headline-container {
+    justify-content: center;
+    color: white;
+}
+
+.habit-card {
+    margin: 10px;
+    text-align: left;
+    padding: 10px;
+}
+
+.habit {
+    padding: 10px;
+}
+
+.button-column {
+    padding: 5px;
+    display: flex;
+    justify-content: center;
+}

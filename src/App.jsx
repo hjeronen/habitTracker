@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react'
+import { Card, Container, Navbar } from 'react-bootstrap'
 import habitService from './services/habits'
 import Home from './components/Home'
 import HabitForm from './components/HabitForm'
+import './styles.css'
 
 const App = () => {
   const [habits, setHabits] = useState([])
@@ -55,9 +57,15 @@ const App = () => {
 
   return (
     <div>
-      <h1>HabitTracker</h1>
-      <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} />
-      <HabitForm habit={selected} createNew={createNew} updateHabit={updateHabit} />
+      <Navbar bg='dark'>
+        <Container>
+          <Navbar.Brand className='headline-container'>HabitTracker</Navbar.Brand>
+        </Container>
+      </Navbar>
+      <Container>
+        <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} />
+        <HabitForm habit={selected} createNew={createNew} updateHabit={updateHabit} />
+      </Container>
     </div>
   )
 }
