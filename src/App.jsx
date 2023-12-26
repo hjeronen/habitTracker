@@ -25,10 +25,9 @@ const App = () => {
     try {
       const createdHabit = await habitService.addHabit(newHabit)
       setHabits(habits.concat(createdHabit))
-      return true
+      setView('home')
     } catch (exception) {
       console.log(exception)
-      return false
     }
   }
 
@@ -41,9 +40,9 @@ const App = () => {
           .concat(returnedHabit)
       )
       setSelected(null)
+      setView('home')
     } catch (exception) {
       console.log(exception)
-      setSelected(null)
     }
   }
 

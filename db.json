@@ -21,6 +21,17 @@
           "value": 0
         }
       ]
+    },
+    {
+      "name": "Drawing",
+      "dataValues": [
+        {
+          "type": "Drawn",
+          "unit": "Picture",
+          "value": 0
+        }
+      ],
+      "id": 8802
     }
   ]
 }

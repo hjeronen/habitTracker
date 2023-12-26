@@ -1,32 +1,26 @@
 import { useState, useEffect } from 'react'
+import { Button, Form } from 'react-bootstrap'
+import PhaseOne from './PhaseOne'
+import PhaseTwo from './PhaseTwo'
 
 const HabitForm = ({ habit, createNew, updateHabit }) => {
+  const [phase, setPhase] = useState('one')
   const [name, setName] = useState('')
+  const [dataValues, setDataValues] = useState([])
 
   useEffect(() => {
     habit ? setName(habit.name) : setName('')
   }, [habit])
 
-  const data = [
-    {
-      type: 'default',
-      unit: 'test',
-      value: 0
-    }
-  ]
-
-  const create = async (event) => {
+  const create = (event) => {
     event.preventDefault()
 
     const newHabit = {
       name,
-      data
+      dataValues
     }
 
-    const created = await createNew(newHabit)
-    if (created) {
-      setName('')
-    }
+    createNew(newHabit)
   }
 
   const update = async (event) => {
@@ -35,30 +29,33 @@ const HabitForm = ({ habit, createNew, updateHabit }) => {
     const newHabit = {
       id: habit.id,
       name,
-      data
+      dataValues
     }
 
-    const updated = await updateHabit(newHabit)
-    if (updated) {
-      setName('')
+    updateHabit(newHabit)
+  }
+
+  const renderPhase = () => {
+    switch (phase) {
+      case 'one':
+        return <PhaseOne name={name} setName={setName} setPhase={setPhase} />
+      case 'two':
+        return <PhaseTwo dataValues={dataValues} setDataValues={setDataValues} setPhase={setPhase} />
+      default:
+        return <PhaseOne name={name} setName={setName} />
     }
   }
 
   return (
-    <form onSubmit={habit ? update : create}>
+    <Form onSubmit={habit ? update : create}>
       <h2>Create new habit</h2>
+      {renderPhase()}
       <div>
-        Name:
-        <input 
-          type='text'
-          value={name}
-          name='Name'
-          id='name'
-          onChange={({ target }) => setName(target.value)}
-        />
+        {phase === 'two'
+          ? <Button type='submit'>{habit ? 'Update' : 'Create'}</Button>
+          : <></>}
       </div>
-      <button type='submit'>{habit ? 'Update' : 'Create'}</button>
-    </form>
+    </Form>
   )
 }
 
