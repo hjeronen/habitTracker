@@ -63,6 +63,7 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
           </Card>
         )}
       </Card>
+      <Button onClick={() => setPhase('three')}>Next</Button>
     </div>
   )
 }

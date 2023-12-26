@@ -9,6 +9,12 @@
     color: white;
 }
 
+.subheader {
+    justify-content: center;
+    color: white;
+    background-color: blue;
+}
+
 .habit-card {
     margin: 10px;
     text-align: left;
