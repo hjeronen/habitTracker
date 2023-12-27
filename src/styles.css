@@ -32,6 +32,11 @@
     margin-right: -2px;
 }
 
+.form-col-two {
+    padding: 5px;
+    margin: 5px;
+}
+
 .text-p {
     padding: 6px;
     display: flex;

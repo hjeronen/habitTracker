@@ -7,7 +7,7 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
 
   const addData = () => {
     const data = {
-      type, unit, value: 0
+      type, unit, dataPoints: []
     }
 
     setDataValues(dataValues.concat(data))

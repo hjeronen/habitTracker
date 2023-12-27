@@ -63,7 +63,7 @@ const App = () => {
       case 'habit':
         return <HabitView habit={selected} setView={setView} />
       default:
-        return <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} setView={setView} />
+        return <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} updateHabit={updateHabit} setView={setView} />
     }
   }
 
