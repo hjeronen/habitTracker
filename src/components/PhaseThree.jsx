@@ -19,12 +19,6 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
     setTargets(newTargets)
   }
 
-  const saveTargets = () => {
-    const data = dataValues.map((item, i) => ({ ...item, target: targets[i] }))
-    console.log(targets)
-    console.log(goals)
-  }
-
   const selectAGoal = (index) => {
     let selected = [...selectedGoals]
     selected[index] = !selectedGoals[index]
@@ -39,7 +33,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
 
   const saveDataValues = () => {
     const data = dataValues.map((item, i) => {
-      const dataValue = {...item}
+      const dataValue = { ...item }
 
       if (selectedTargets[i]) {
         dataValue.target = targets[i]
@@ -57,81 +51,92 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
   }
 
   return (
-    <div>
+    <Container>
       <Card>
         <Card.Header>
           <Card.Title>
+            3. Set targets
+          </Card.Title>
+        </Card.Header>
+        <Card>
+          <Card.Header>
             All time targets
-          </Card.Title>
-        </Card.Header>
-        <Card.Body>
-          {dataValues.map((data, i) =>
-            <Card key={i}>
-              <Row>
-                <Col>
-                  <input type='checkbox' onChange={() => selectATarget(i)} />
-                </Col>
-                <Col>
-                  {data.type}
-                </Col>
-                <Col>
-                  <input
-                    type='number'
-                    value={targets[i]}
-                    name='Type'
-                    id='type'
-                    disabled={!selectedTargets[i]}
-                    onChange={({ target }) => setATarget(i, target.value)}
-                  />
-                </Col>
-                <Col>
-                  {data.unit}
-                </Col>
-              </Row>
-            </Card>
-          )}
-        </Card.Body>
-      </Card>
-      <Card>
-        <Card.Header>
-          <Card.Title>
+          </Card.Header>
+          <Card.Body>
+            {dataValues.map((data, i) =>
+              <Card key={i}>
+                <Row>
+                  <Col>
+                    <input type='checkbox' onChange={() => selectATarget(i)} />
+                  </Col>
+                  <Col>
+                    {data.type}
+                  </Col>
+                  <Col>
+                    <input
+                      type='number'
+                      value={targets[i]}
+                      name='Type'
+                      id='type'
+                      disabled={!selectedTargets[i]}
+                      onChange={({ target }) => setATarget(i, target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    {data.unit}
+                  </Col>
+                </Row>
+              </Card>
+            )}
+          </Card.Body>
+        </Card>
+        <Card>
+          <Card.Header>
             Daily goals
-          </Card.Title>
-        </Card.Header>
-        <Card.Body>
-          {dataValues.map((data, i) =>
-            <Card key={i}>
-              <Row>
-                <Col>
-                  <input type='checkbox' onChange={() => selectAGoal(i)} />
-                </Col>
-                <Col>
-                  {data.type}
-                </Col>
-                <Col>
-                  <input
-                    type='number'
-                    value={goals[i]}
-                    name='Type'
-                    id='type'
-                    disabled={!selectedGoals[i]}
-                    onChange={({ target }) => setAGoal(i, target.value)}
-                  />
-                </Col>
-                <Col>
-                  {data.unit}
-                </Col>
-              </Row>
-            </Card>
-          )}
-        </Card.Body>
+          </Card.Header>
+          <Card.Body>
+            {dataValues.map((data, i) =>
+              <Card key={i}>
+                <Row>
+                  <Col>
+                    <input type='checkbox' onChange={() => selectAGoal(i)} />
+                  </Col>
+                  <Col>
+                    {data.type}
+                  </Col>
+                  <Col>
+                    <input
+                      type='number'
+                      value={goals[i]}
+                      name='Type'
+                      id='type'
+                      disabled={!selectedGoals[i]}
+                      onChange={({ target }) => setAGoal(i, target.value)}
+                    />
+                  </Col>
+                  <Col>
+                    {data.unit}
+                  </Col>
+                </Row>
+              </Card>
+            )}
+          </Card.Body>
+        </Card>
+        <Card>
+          Milestones
+        </Card>
       </Card>
-      <Card>
-        Milestones
-      </Card>
-      <Button onClick={saveTargets}>Check data</Button>
-      <Button onClick={saveDataValues}>Confirm</Button>
-    </div>
+      <Container className='button-container'>
+        <Row>
+          <Col className='back-button'>
+            <Button onClick={() => setPhase('two')}>Back</Button>
+          </Col>
+          <Col className='next-button'>
+            <Button onClick={saveDataValues}>Next</Button>
+          </Col>
+        </Row>
+      </Container>
+    </Container>
   )
 }
 

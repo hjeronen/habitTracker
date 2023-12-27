@@ -1,7 +1,7 @@
 .card {
     margin: 20px;
     padding: 10px;
-    
+
 }
 
 .headline-container {
@@ -10,15 +10,48 @@
 }
 
 .subheader {
+    display: flex;
     justify-content: center;
-    color: white;
-    background-color: blue;
+    margin-left: -10px;
+}
+
+.content-container {
+    padding: 10px;
+    margin: 10px;
+}
+
+.form-header {
+    padding: 10px;
+    margin: 10px;
+    padding-left: 20px;
+} 
+
+.form-col {
+    padding: 5px;
+    margin: 5px;
+    margin-right: -2px;
+}
+
+.text-p {
+    padding: 6px;
+    display: flex;
+    justify-content: right;
+} 
+
+input[type=text] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
 }
 
 .habit-card {
     margin: 10px;
     text-align: left;
     padding: 10px;
+}
+
+.habit-card:hover {
+    background-color: lightblue;
 }
 
 .habit {
@@ -29,4 +62,20 @@
     padding: 5px;
     display: flex;
     justify-content: center;
+}
+
+.button-container {
+    padding: 5px;
+    margin: 15px;
+}
+
+.back-button {
+    display: flex;
+    justify-content: left;
+}
+
+.next-button {
+    display: flex;
+    justify-content: right;
+    padding-right: 40px;
 }

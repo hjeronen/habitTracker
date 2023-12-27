@@ -1,14 +1,19 @@
-import { Button, Card, Container, Row } from 'react-bootstrap'
+import { Button, Card, Col, Container, Row } from 'react-bootstrap'
 
-const Confirm = ({ name, dataValues }) => {
+const Confirm = ({ name, dataValues, setPhase }) => {
   return (
-    <Container>
-      Check habit data:
+    <Container className='content-container'>
+      <h4 style={{ marginLeft: '20px' }}>Check habit information:</h4>
       <Card>
-        Habit name: {name}
+        <Card.Header>
+          Habit name
+        </Card.Header>
+        {name}
       </Card>
       <Card>
-        Data
+        <Card.Header>
+          Tracked data and targets
+        </Card.Header>
         {dataValues.map((item, i) =>
           <Card key={i}>
             <Container>
@@ -28,7 +33,16 @@ const Confirm = ({ name, dataValues }) => {
           </Card>
         )}
       </Card>
-      <Button type='submit'>Create</Button>
+      <Container className='button-container'>
+        <Row>
+          <Col className='back-button'>
+            <Button onClick={() => setPhase('three')}>Back</Button>
+          </Col>
+          <Col className='next-button'>
+            <Button type='submit'>Create</Button>
+          </Col>
+        </Row>
+      </Container>
     </Container>
   )
 }

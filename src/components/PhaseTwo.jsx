@@ -22,49 +22,80 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
   }
 
   return (
-    <div>
-      <h2>2. Set tracked data values</h2>
-      <div>
-        Type:
-        <input
-          type='text'
-          value={type}
-          name='Type'
-          id='type'
-          onChange={({ target }) => setType(target.value)}
-        />
-      </div>
-      <div>
-        <div>
-          Unit:
-          <input
-            type='text'
-            value={unit}
-            name='Unit'
-            id='unit'
-            onChange={({ target }) => setUnit(target.value)}
-          />
-        </div>
-        <Button onClick={() => addData()} >Add</Button>
-      </div>
-      <Card>
-        {dataValues.map((data, i) =>
-          <Card key={i} className='habit-card'>
-            <Container>
+    <Container className='content-container'>
+      <Row>
+        <Col>
+          <Card>
+            <Card.Header>
+              <Card.Title>
+                2. Set tracked data values
+              </Card.Title>
+            </Card.Header>
+            <Container className='content-container'>
               <Row>
-                <Col xs={12} md={8} className='habit'>
-                  {data.type} {data.unit}
+                <Col sm='2' className='form-col'>
+                  <p className='text-p'>Type:</p>
                 </Col>
-                <Col xs={3} md={2} className='button-column'>
-                  <Button onClick={() => deleteData(i)}>Delete</Button>
+                <Col sm='7' className='form-col'>
+                  <input
+                    type='text'
+                    value={type}
+                    name='Type'
+                    id='type'
+                    onChange={({ target }) => setType(target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col sm='2' className='form-col'>
+                  <p className='text-p'>Unit:</p>
+                </Col>
+                <Col sm='7' className='form-col'>
+                  <input
+                    type='text'
+                    value={unit}
+                    name='Unit'
+                    id='unit'
+                    onChange={({ target }) => setUnit(target.value)}
+                  />
+                </Col>
+              </Row>
+              <Row>
+                <Col md='12' className='next-button'>
+                  <Button onClick={() => addData()} >Add</Button>
                 </Col>
               </Row>
             </Container>
+            <Card>
+              {dataValues.map((data, i) =>
+                <Card key={i} className='habit-card'>
+                  <Container>
+                    <Row>
+                      <Col xs={12} md={8} className='habit'>
+                        {data.type} {data.unit}
+                      </Col>
+                      <Col xs={3} md={2} className='button-column'>
+                        <Button onClick={() => deleteData(i)}>Delete</Button>
+                      </Col>
+                    </Row>
+                  </Container>
+                </Card>
+              )}
+            </Card>
           </Card>
-        )}
-      </Card>
-      <Button onClick={() => setPhase('three')}>Next</Button>
-    </div>
+          <Container className='button-container'>
+            <Row>
+              <Col className='back-button'>
+                <Button onClick={() => setPhase('one')}>Back</Button>
+              </Col>
+              <Col className='next-button'>
+                <Button onClick={() => setPhase('three')}>Next</Button>
+              </Col>
+            </Row>
+          </Container>
+        </Col>
+      </Row>
+    </Container>
   )
 }
 
