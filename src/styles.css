@@ -84,3 +84,20 @@ input[type=text] {
     justify-content: right;
     padding-right: 40px;
 }
+
+/* HabitView */
+
+.habitview-header {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.habitview-subheader {
+    margin: 20px;
+}
+
+.habitview-button-bar {
+    margin: 10px;
+}
