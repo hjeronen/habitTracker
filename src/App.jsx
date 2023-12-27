@@ -4,6 +4,7 @@ import habitService from './services/habits'
 import Home from './components/Home'
 import HabitForm from './components/HabitForm'
 import HabitView from './components/HabitView'
+import DataPoints from './components/DataPoints'
 import './styles.css'
 
 const App = () => {
@@ -40,8 +41,9 @@ const App = () => {
           .filter(h => h.id !== returnedHabit.id)
           .concat(returnedHabit)
       )
-      setSelected(null)
-      setView('home')
+      selected.id === returnedHabit.id
+      ? setSelected(returnedHabit)
+      : setSelected(null)
     } catch (exception) {
       console.log(exception)
     }
@@ -62,6 +64,8 @@ const App = () => {
         return <HabitForm createNew={createNew} setView={setView} />
       case 'habit':
         return <HabitView habit={selected} setView={setView} />
+      case 'datapoints':
+        return <DataPoints habit={selected} setView={setView} updateHabit={updateHabit} />
       default:
         return <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} updateHabit={updateHabit} setView={setView} />
     }

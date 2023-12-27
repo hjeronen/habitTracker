@@ -6,48 +6,21 @@
         {
           "type": "Distance",
           "unit": "meters",
-          "dataPoints": [
-            {
-              "date": "2023-12-27T18:02:33.279Z",
-              "value": "100"
-            },
-            {
-              "date": "2023-12-27T18:05:37.549Z",
-              "value": "100"
-            }
-          ],
+          "dataPoints": [],
           "target": "50000",
           "goal": "100"
         },
         {
           "type": "Time",
           "unit": "minutes",
-          "dataPoints": [
-            {
-              "date": "2023-12-27T18:02:33.279Z",
-              "value": "10"
-            },
-            {
-              "date": "2023-12-27T18:05:37.549Z",
-              "value": "10"
-            }
-          ],
+          "dataPoints": [],
           "target": "60000",
           "goal": "60"
         },
         {
           "type": "Speed",
           "unit": "km/h",
-          "dataPoints": [
-            {
-              "date": "2023-12-27T18:02:33.279Z",
-              "value": "40"
-            },
-            {
-              "date": "2023-12-27T18:05:37.549Z",
-              "value": "40"
-            }
-          ]
+          "dataPoints": []
         }
       ],
       "id": 1522
