@@ -6,21 +6,60 @@
         {
           "type": "Distance",
           "unit": "meters",
-          "dataPoints": [],
+          "dataPoints": [
+            {
+              "date": "2023-12-26T13:09:28.011Z",
+              "value": "100"
+            },
+            {
+              "date": "2023-12-27T13:09:47.264Z",
+              "value": "1000"
+            },
+            {
+              "date": "2023-12-28T13:10:00.584Z",
+              "value": "500"
+            }
+          ],
           "target": "50000",
           "goal": "100"
         },
         {
           "type": "Time",
           "unit": "minutes",
-          "dataPoints": [],
+          "dataPoints": [
+            {
+              "date": "2023-12-26T13:09:28.011Z",
+              "value": "20"
+            },
+            {
+              "date": "2023-12-27T13:09:47.264Z",
+              "value": "30"
+            },
+            {
+              "date": "2023-12-28T13:10:00.584Z",
+              "value": "10"
+            }
+          ],
           "target": "60000",
           "goal": "60"
         },
         {
           "type": "Speed",
           "unit": "km/h",
-          "dataPoints": []
+          "dataPoints": [
+            {
+              "date": "2023-12-26T13:09:28.011Z",
+              "value": "40"
+            },
+            {
+              "date": "2023-12-27T13:09:47.264Z",
+              "value": "30"
+            },
+            {
+              "date": "2023-12-28T13:10:00.584Z",
+              "value": "40"
+            }
+          ]
         }
       ],
       "id": 1522
