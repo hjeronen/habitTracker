@@ -1,7 +1,46 @@
 import { Button, Col, Container, Row } from 'react-bootstrap'
 import LineChartComponent from './LineChartComponent'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
 
 const HabitView = ({ habit, setView }) => {
+
+  const getTodaysProgress = (dataValue) => {
+    const today = getFormattedDate(new Date())
+    const current = dataValue.dataPoints
+      .map(dataPoint => getFormattedDate(dataPoint.date) === today
+        ? parseInt(dataPoint.value)
+        : 0)
+      .reduce((value, sum) => value + sum, 0)
+    console.log('cumulative progress today')
+    console.log(dataValue.type)
+    console.log(current)
+    return current
+  }
+
+  const getTodaysPercentage = (current, goal) => Math.floor((current / goal) * 100)
+
+  const renderProgressBars = () => {
+    return (
+      <Container className='progressbar-container'>
+        <Row>
+          {habit.dataValues.map((value, i) => {
+            if (value.goal) {
+              const progress = getTodaysProgress(value)
+              const percentage = getTodaysPercentage(progress, parseInt(value.goal))
+              return (
+                <Col key={i} style={{ width: 200, height: 200 }}>
+                  <CircularProgressbar value={percentage} text={`${percentage}%`} />
+                  <p className='progressbar-text'>{value.type}</p>
+                  <p className='progressbar-text'>{progress} {value.unit}</p>
+                </Col>
+              )
+            }
+          })}
+        </Row>
+      </Container>
+    )
+  }
 
   const getCumulativeArray = (dataPoints) => {
     let cumulativeArray = []
@@ -78,10 +117,13 @@ const HabitView = ({ habit, setView }) => {
           </Row>
         </Container>
       </Container>
-      <Container>
+      <Container className='content-container'>
         <h5 className='habitview-subheader'>Today's progress</h5>
+        {renderProgressBars()}
         <h5 className='habitview-subheader'>Current progress</h5>
-        <LineChartComponent data={getCumulativeProgress()} />
+        <Container className='content-container'>
+          <LineChartComponent data={getCumulativeProgress()} />
+        </Container>
         <h5 className='habitview-subheader'>Daily progress</h5>
         <LineChartComponent data={getAllDataPoints()} />
       </Container>

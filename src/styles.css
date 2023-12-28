@@ -96,8 +96,23 @@ input[type=text] {
 
 .habitview-subheader {
     margin: 20px;
+    margin-top: 20px;
+    padding-top: 40px;
 }
 
 .habitview-button-bar {
     margin: 10px;
+}
+
+.progressbar-container {
+    display: flex;
+    justify-content: center;
+    margin: 10px;
+    padding: 10px;
+}
+
+.progressbar-text {
+    margin: 5px;
+    display: flex;
+    justify-content: center;
 }
