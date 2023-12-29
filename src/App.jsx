@@ -42,8 +42,8 @@ const App = () => {
           .concat(returnedHabit)
       )
       selected.id === returnedHabit.id
-      ? setSelected(returnedHabit)
-      : setSelected(null)
+        ? setSelected(returnedHabit)
+        : setSelected(null)
     } catch (exception) {
       console.log(exception)
     }
@@ -53,6 +53,8 @@ const App = () => {
     try {
       habitService.deleteHabit(id)
       setHabits(habits.filter(h => h.id !== id))
+      setSelected(null)
+      setView('home')
     } catch (exception) {
       console.log(exception)
     }
@@ -61,13 +63,26 @@ const App = () => {
   const renderView = () => {
     switch (view) {
       case 'form':
-        return <HabitForm createNew={createNew} setView={setView} />
+        return <HabitForm
+          createNew={createNew}
+          setView={setView} />
       case 'habit':
-        return <HabitView habit={selected} setView={setView} />
+        return <HabitView
+          habit={selected}
+          setView={setView}
+          deleteHabit={deleteHabit} />
       case 'datapoints':
-        return <DataPoints habit={selected} setView={setView} updateHabit={updateHabit} />
+        return <DataPoints
+          habit={selected}
+          setView={setView}
+          updateHabit={updateHabit} />
       default:
-        return <Home habits={habits} deleteHabit={deleteHabit} selectHabit={setSelected} updateHabit={updateHabit} setView={setView} />
+        return <Home
+          habits={habits}
+          deleteHabit={deleteHabit}
+          selectHabit={setSelected}
+          updateHabit={updateHabit}
+          setView={setView} />
     }
   }
 

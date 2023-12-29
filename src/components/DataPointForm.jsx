@@ -35,7 +35,7 @@ const DataPointForm = ({ habit, addDataToHabit }) => {
               />
             </Col>
             <Col sm='2'>
-              <p>{data.unit}</p>
+              <p className='text-p-left'>{data.unit}</p>
             </Col>
           </Row>
         )}

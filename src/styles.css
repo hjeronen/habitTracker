@@ -39,9 +39,17 @@
 
 .text-p {
     padding: 6px;
+    margin: auto;
     display: flex;
     justify-content: right;
-} 
+}
+
+.text-p-left {
+    padding: 6px;
+    margin: auto;
+    display: flex;
+    justify-content: left;
+}
 
 input[type=text] {
     width: 100%;
@@ -49,10 +57,14 @@ input[type=text] {
     box-sizing: border-box;
 }
 
+input[type=number] {
+    width: 100%;
+    padding: 5px;
+    box-sizing: border-box;
+}
+
 .habit-card {
     margin: 10px;
-    text-align: left;
-    padding: 10px;
 }
 
 .habit-card:hover {
@@ -61,6 +73,19 @@ input[type=text] {
 
 .habit {
     padding: 10px;
+    display: flex;
+    justify-content: center;
+}
+
+.habitcard-column-habit {
+    margin: auto;
+    padding: 10px;
+}
+
+.habitcard-column-button {
+    margin: auto;
+    padding: 10px;
+    text-align: right;
 }
 
 .button-column {
@@ -101,14 +126,26 @@ input[type=text] {
 }
 
 .habitview-button-bar {
-    margin: 10px;
+    display: inline-block;
+    text-align: center;
+    padding-top: 10px;
+    padding-left: 60px;
+    padding-right: 50px;
+}
+
+.habitview-button-col {
+    margin: auto;
+}
+
+.habitview-button {
+    width: 150px;
 }
 
 .progressbar-container {
     display: flex;
     justify-content: center;
-    margin: 10px;
-    padding: 10px;
+    margin: 5px;
+    padding: 5px;
 }
 
 .progressbar-text {

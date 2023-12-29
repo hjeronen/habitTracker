@@ -2,8 +2,9 @@ import { Button, Col, Container, Row } from 'react-bootstrap'
 import LineChartComponent from './LineChartComponent'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
+import { getFormattedDate } from '../utils/utils'
 
-const HabitView = ({ habit, setView }) => {
+const HabitView = ({ habit, setView, deleteHabit }) => {
 
   const getTodaysProgress = (dataValue) => {
     const today = getFormattedDate(new Date())
@@ -12,9 +13,6 @@ const HabitView = ({ habit, setView }) => {
         ? parseInt(dataPoint.value)
         : 0)
       .reduce((value, sum) => value + sum, 0)
-    console.log('cumulative progress today')
-    console.log(dataValue.type)
-    console.log(current)
     return current
   }
 
@@ -23,13 +21,13 @@ const HabitView = ({ habit, setView }) => {
   const renderProgressBars = () => {
     return (
       <Container className='progressbar-container'>
-        <Row>
+        <Row className='justify-content-md-center'>
           {habit.dataValues.map((value, i) => {
             if (value.goal) {
               const progress = getTodaysProgress(value)
               const percentage = getTodaysPercentage(progress, parseInt(value.goal))
               return (
-                <Col key={i} style={{ width: 200, height: 200 }}>
+                <Col key={i} style={{ width: 150, height: 150 }}>
                   <CircularProgressbar value={percentage} text={`${percentage}%`} />
                   <p className='progressbar-text'>{value.type}</p>
                   <p className='progressbar-text'>{progress} {value.unit}</p>
@@ -61,7 +59,8 @@ const HabitView = ({ habit, setView }) => {
     habit.dataValues.forEach(value => {
       const dataset = {
         label: value.type,
-        values: getCumulativeArray(value.dataPoints.map(data => parseInt(data.value)))
+        values: getCumulativeArray(value.dataPoints
+          .map(data => parseInt(data.value)))
       }
       data.datasets.push(dataset)
     })
@@ -69,16 +68,8 @@ const HabitView = ({ habit, setView }) => {
     return data
   }
 
-  const getDates = (dataValue) => dataValue.dataPoints.map(data => getFormattedDate(data.date))
-
-  const getFormattedDate = (dateString) => {
-    const date = new Date(dateString)
-    const day = String(date.getDate()).padStart(2, '0') // Ensures the day is two digits
-    const month = String(date.getMonth() + 1).padStart(2, '0') // Adds 1 because months are 0-indexed
-    const year = date.getFullYear()
-
-    return `${day}/${month}/${year}`
-  }
+  const getDates = (dataValue) =>
+    dataValue.dataPoints.map(data => getFormattedDate(data.date))
 
   const getAllDataPoints = () => {
     const data = {
@@ -108,11 +99,24 @@ const HabitView = ({ habit, setView }) => {
         </Row>
         <Container className='habitview-button-bar'>
           <Row>
-            <Col sm='6' style={{ display: 'flex', justifyContent: 'right', paddingRight: '10px' }}>
-              <Button>Modify settings</Button>
+            <Col className='habitview-button-col'>
+              <Button className='habitview-button' variant='outline-primary' >Modify settings</Button>
             </Col>
-            <Col sm='3'>
-              <Button onClick={() => setView('datapoints')}>See data points</Button>
+            <Col className='habitview-button-col'>
+              <Button
+                className='habitview-button'
+                variant='outline-primary'
+                onClick={() => setView('datapoints')}>
+                See data points
+              </Button>
+            </Col>
+            <Col className='habitview-button-col'>
+              <Button
+                className='habitview-button'
+                variant='outline-danger'
+                onClick={() => deleteHabit(habit.id)}>
+                Delete habit
+              </Button>
             </Col>
           </Row>
         </Container>
@@ -125,7 +129,9 @@ const HabitView = ({ habit, setView }) => {
           <LineChartComponent data={getCumulativeProgress()} />
         </Container>
         <h5 className='habitview-subheader'>Daily progress</h5>
-        <LineChartComponent data={getAllDataPoints()} />
+        <Container className='content-container'>
+          <LineChartComponent data={getAllDataPoints()} />
+        </Container>
       </Container>
       <Container className='button-container'>
         <Button>Add new graph</Button>

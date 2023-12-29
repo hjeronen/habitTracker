@@ -1,61 +1,44 @@
-import Chart from 'chart.js/auto'
-import { CategoryScale } from 'chart.js'
-import { useState } from 'react'
-import { Pie } from 'react-chartjs-2'
+import { Col, Container, Row } from 'react-bootstrap'
+import { CircularProgressbar } from 'react-circular-progressbar'
+import 'react-circular-progressbar/dist/styles.css'
+import { getFormattedDate } from '../utils/utils'
 
-const testData = [
-  {
-    id: 1,
-    year: 2016,
-    userGain: 80000,
-    userLost: 823
-  },
-  {
-    id: 2,
-    year: 2017,
-    userGain: 45677,
-    userLost: 345
-  },
-  {
-    id: 3,
-    year: 2018,
-    userGain: 78888,
-    userLost: 555
-  },
-  {
-    id: 4,
-    year: 2019,
-    userGain: 90000,
-    userLost: 4555
-  },
-  {
-    id: 5,
-    year: 2020,
-    userGain: 4300,
-    userLost: 234
+const DailyProgress = ({ habit }) => {
+
+  const getTodaysProgressInDataValue = (dataValue) => {
+    const today = getFormattedDate(new Date())
+    const current = dataValue.dataPoints
+      .map(dataPoint => getFormattedDate(dataPoint.date) === today
+        ? parseInt(dataPoint.value)
+        : 0)
+      .reduce((value, sum) => value + sum, 0)
+    return current
   }
-]
 
-Chart.register(CategoryScale)
+  const getTodaysPercentage = (current, goal) => Math.floor((current / goal) * 100)
 
-const DailyProgress = () => {
-  const [chartData, setChartData] = useState(testData)
+  const getTodaysProgressInAllDataValues = () => {
+    const valuesWithGoals = habit.dataValues.filter(value => value.goal ? true : false)
+    const allPercentages = valuesWithGoals.map(value => {
+      if (value.goal) {
+        const progress = getTodaysProgressInDataValue(value)
+        return getTodaysPercentage(progress, parseInt(value.goal))
+      }
+    })
+    const average = allPercentages.reduce((value, sum) => value + sum, 0) / allPercentages.length
+    return Math.floor(average)
+  }
+
+  const todaysProgress = getTodaysProgressInAllDataValues()
 
   return (
-    <div className="chart-container">
-      <h2 style={{ textAlign: "center" }}>Pie Chart</h2>
-      <Pie
-        data={chartData}
-        options={{
-          plugins: {
-            title: {
-              display: true,
-              text: "Users Gained between 2016-2020"
-            }
-          }
-        }}
-      />
-    </div>
+    <Container className='progressbar-container'>
+      <Row>
+        <Col>
+          <CircularProgressbar value={todaysProgress} text={`${todaysProgress}%`} />
+        </Col>
+      </Row>
+    </Container>
   )
 }
 

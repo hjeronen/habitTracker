@@ -63,6 +63,70 @@
         }
       ],
       "id": 1522
+    },
+    {
+      "name": "Reading",
+      "dataValues": [
+        {
+          "type": "Read pages",
+          "unit": "pages",
+          "dataPoints": [
+            {
+              "date": "2023-12-28T18:10:14.748Z",
+              "value": "50"
+            },
+            {
+              "date": "2023-12-28T18:12:40.430Z",
+              "value": "50"
+            },
+            {
+              "date": "2023-12-28T18:13:29.093Z",
+              "value": "10"
+            },
+            {
+              "date": "2023-12-28T18:23:34.749Z",
+              "value": "10"
+            },
+            {
+              "date": "2023-12-29T16:54:01.189Z",
+              "value": "10"
+            }
+          ],
+          "target": "10000",
+          "goal": "200"
+        }
+      ],
+      "id": 1385
+    },
+    {
+      "name": "Take vitamins",
+      "dataValues": [
+        {
+          "type": "C",
+          "unit": "micrograms",
+          "dataPoints": [
+            {
+              "date": "2023-12-28T18:11:43.946Z",
+              "value": "5"
+            }
+          ],
+          "target": "1000",
+          "goal": "20"
+        },
+        {
+          "type": "D",
+          "unit": "micrograms",
+          "dataPoints": [
+            {
+              "date": "2023-12-28T18:11:43.946Z",
+              "value": "5"
+            }
+          ],
+          "target": "1000",
+          "goal": "20"
+        }
+      ],
+      "id": 2990
     }
   ]
 }

@@ -1,9 +1,14 @@
 import { useState } from 'react'
 import { Card, Container, Col, Button, Row } from 'react-bootstrap'
-import Habit from './Habit'
+import DailyProgress from './DailyProgress'
 import DataPointForm from './DataPointForm'
 
-const Home = ({ habits, deleteHabit, selectHabit, updateHabit, setView }) => {
+const Home = ({
+  habits,
+  selectHabit,
+  updateHabit,
+  setView }) => {
+
   const [showForm, setShowForm] = useState(habits.map(() => false))
 
   const showHabit = (habit) => {
@@ -12,7 +17,7 @@ const Home = ({ habits, deleteHabit, selectHabit, updateHabit, setView }) => {
   }
 
   const addDataToHabit = (habit, dataPoints) => {
-    const newHabit = {...habit}
+    const newHabit = { ...habit }
     for (let i = 0; i < dataPoints.length; i++) {
       const oldDataPoints = habit.dataValues[i].dataPoints
       const newDataPoint = {
@@ -36,26 +41,40 @@ const Home = ({ habits, deleteHabit, selectHabit, updateHabit, setView }) => {
       <Card>
         {habits.length === 0
           ? <Card>No tracked activities yet.</Card>
-          : habits.map((habit, i) =>
-            <Card key={habit.id} className='habit-card'>
-              <Container>
-                <Row>
-                  <Col xs={12} md={8} className='habit' onClick={() => showHabit(habit)}>
-                    <Habit habit={habit} />
-                  </Col>
-                  <Col xs={3} md={2} className='button-column'>
-                    <Button onClick={() => deleteHabit(habit.id)}>Delete</Button>
-                  </Col>
-                  <Col xs={3} md={2} className='button-column'>
-                    <Button onClick={() => toggleDataForm(i)}>{showForm[i] ? 'Hide' : 'Add data'}</Button>
-                  </Col>
-                </Row>
-              </Container>
-              {showForm[i] &&
-                <DataPointForm habit={habit} addDataToHabit={addDataToHabit} />
+          : habits
+            .sort((a, b) => {
+              if (a.name < b.name) {
+                return -1
+              } else if (a.name > b.name) {
+                return 1
               }
-            </Card>
-          )
+              return 0
+            })
+            .map((habit, i) =>
+              <Card key={habit.id} className='habit-card'>
+                <Container>
+                  <Row>
+                    <Col xs='7' className='habitcard-column-habit' onClick={() => showHabit(habit)}>
+                      {habit.name}
+                    </Col>
+                    <Col xs='2'>
+                      <DailyProgress habit={habit} />
+                    </Col>
+                    <Col xs='auto' className='habitcard-column-button'>
+                      <Button
+                        onClick={() => toggleDataForm(i)}>
+                        {showForm[i] ? 'Hide' : 'Add data'}
+                      </Button>
+                    </Col>
+                  </Row>
+                  {showForm[i] &&
+                    <DataPointForm
+                      habit={habit}
+                      addDataToHabit={addDataToHabit} />
+                  }
+                </Container>
+              </Card>
+            )
         }
       </Card>
       <Container className='button-container'>
