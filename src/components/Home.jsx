@@ -19,12 +19,14 @@ const Home = ({
   const addDataToHabit = (habit, dataPoints) => {
     const newHabit = { ...habit }
     for (let i = 0; i < dataPoints.length; i++) {
-      const oldDataPoints = habit.dataValues[i].dataPoints
-      const newDataPoint = {
-        date: new Date(),
-        value: dataPoints[i]
+      if (dataPoints[i] > 0) {
+        const oldDataPoints = habit.dataValues[i].dataPoints
+        const newDataPoint = {
+          date: new Date(),
+          value: dataPoints[i]
+        }
+        newHabit.dataValues[i].dataPoints = oldDataPoints.concat(newDataPoint)
       }
-      newHabit.dataValues[i].dataPoints = oldDataPoints.concat(newDataPoint)
     }
     updateHabit(newHabit)
     setShowForm(habits.map(() => false))
