@@ -4,8 +4,16 @@ import { Button, Card, Container, Col, Row } from 'react-bootstrap'
 const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
   const [selectedTargets, setSelectedTargets] = useState(dataValues.map(() => false))
   const [targets, setTargets] = useState(dataValues.map(() => 0))
-  const [selectedGoals, setSelectedGoals] = useState(dataValues.map(() => 0))
+  const [selectedGoals, setSelectedGoals] = useState(dataValues.map(() => false))
   const [goals, setGoals] = useState(dataValues.map(() => 0))
+  const [selectedMilestones, setSelectedMilestones] = useState(dataValues.map(() => false))
+  const [milestoneTypes, setMilestoneTypes] = useState(dataValues.map(() => ''))
+  const [milestoneValues, setMilestoneValues] = useState(dataValues.map(() => 0))
+
+  const milestoneOptions = [
+    'even',
+    'increasing'
+  ]
 
   const selectATarget = (index) => {
     let selected = [...selectedTargets]
@@ -31,6 +39,26 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
     setGoals(newGoals)
   }
 
+  const selectAMilestone = (index) => {
+    let selected = [...selectedMilestones]
+    selected[index] = !selectedMilestones[index]
+    setSelectedMilestones(selected)
+  }
+
+  const selectAMilestoneType = (valueIndex, typeIndex) => {
+    let types = [...milestoneTypes]
+    milestoneTypes[valueIndex] === milestoneOptions[typeIndex]
+      ? types[valueIndex] = ''
+      : types[valueIndex] = milestoneOptions[typeIndex]
+    setMilestoneTypes(types)
+  }
+
+  const setAMilestoneValue = (index, value) => {
+    let values = [...milestoneValues]
+    values[index] = value
+    setMilestoneValues(values)
+  }
+
   const saveDataValues = () => {
     const data = dataValues.map((item, i) => {
       const dataValue = { ...item }
@@ -41,6 +69,13 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
 
       if (selectedGoals[i]) {
         dataValue.goal = goals[i]
+      }
+
+      if (selectedMilestones[i]) {
+        dataValue.milestones = {
+          type: milestoneTypes[i],
+          value: milestoneValues[i]
+        }
       }
 
       return dataValue
@@ -123,7 +158,51 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
           </Card.Body>
         </Card>
         <Card>
-          Milestones
+          <Card.Header>
+            Milestones
+          </Card.Header>
+          <Card.Body>
+            {dataValues.map((data, i) =>
+              <Card key={i}>
+                <Container>
+                  <Row>
+                    <Col xs='1'>
+                      <input type='checkbox' onChange={() => selectAMilestone(i)} />
+                    </Col>
+                    <Col xs='4'>
+                      {data.type}
+                    </Col>
+                    <Col>
+                      {milestoneOptions.map((option, j) =>
+                        <Row key={j}>
+                          <Col xs='1'>
+                            <input
+                              type='radio'
+                              name={data}
+                              onChange={() => selectAMilestoneType(i, j)}
+                            />
+                          </Col>
+                          <Col>
+                            <p>{option}</p>
+                          </Col>
+                          <Col>
+                            <input
+                              type='number'
+                              value={milestoneTypes[i] === option ? milestoneValues[i] : ''}
+                              name='milestoneValue'
+                              id='milestoneValue'
+                              disabled={milestoneTypes[i] !== option}
+                              onChange={({ target }) => setAMilestoneValue(i, target.value)}
+                            />
+                          </Col>
+                        </Row>
+                      )}
+                    </Col>
+                  </Row>
+                </Container>
+              </Card>
+            )}
+          </Card.Body>
         </Card>
       </Card>
       <Container className='button-container'>

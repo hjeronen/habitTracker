@@ -8,7 +8,13 @@ const Confirm = ({ name, dataValues, setPhase }) => {
         <Card.Header>
           Habit name
         </Card.Header>
-        {name}
+        <Container className='content-container'>
+          <Row>
+            <Col>
+              {name}
+            </Col>
+          </Row>
+        </Container>
       </Card>
       <Card>
         <Card.Header>
@@ -29,6 +35,11 @@ const Confirm = ({ name, dataValues, setPhase }) => {
               <Row>
                 <p>Goal: {item.goal ? item.goal : 'No daily goal'} {item.unit}</p>
               </Row>
+              <p>Milestones: {
+                item.milestones
+                  ? `Milestone type: ${item.milestones.type}, Starting value: ${item.milestones.value}`
+                  : 'No milestones set'
+              }</p>
             </Container>
           </Card>
         )}

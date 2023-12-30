@@ -189,6 +189,34 @@
         }
       ],
       "id": 3934
+    },
+    {
+      "name": "Writing",
+      "dataValues": [
+        {
+          "type": "Written pages",
+          "unit": "pages",
+          "dataPoints": [],
+          "target": "1000",
+          "milestones": {
+            "type": "even",
+            "value": "10"
+          },
+          "goal": "5"
+        },
+        {
+          "type": "Written words",
+          "unit": "words",
+          "dataPoints": [],
+          "target": "50000",
+          "goal": "2500",
+          "milestones": {
+            "type": "increasing",
+            "value": "10"
+          }
+        }
+      ],
+      "id": 2872
     }
   ]
 }
