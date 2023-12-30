@@ -1,10 +1,17 @@
-import { Button, Col, Container, Row } from 'react-bootstrap'
+import { useState } from 'react'
+import { Button, Col, Container, Pagination, Row } from 'react-bootstrap'
 import LineChartComponent from './LineChartComponent'
 import { CircularProgressbar } from 'react-circular-progressbar'
 import 'react-circular-progressbar/dist/styles.css'
 import { getFormattedDate } from '../utils/utils'
 
 const HabitView = ({ habit, setView, deleteHabit }) => {
+
+  const [dataValue, setDataValue] = useState(
+    habit.dataValues.length > 0
+      ? habit.dataValues[0]
+      : null
+  )
 
   const getTodaysProgress = (dataValue) => {
     const today = getFormattedDate(new Date())
@@ -129,29 +136,46 @@ const HabitView = ({ habit, setView, deleteHabit }) => {
         </Container>
       </Container>
       <Container className='content-container'>
-        <h5 className='habitview-subheader'>Today's progress</h5>
-        {renderProgressBars()}
-        <h5 className='habitview-subheader'>Current progress</h5>
+        <Container>
+          <h5 className='habitview-subheader'>Today's progress</h5>
+          {renderProgressBars()}
+        </Container>
         <Container className='content-container'>
-          {habit.dataValues.map((dataValue, i) =>
-            <LineChartComponent
-              key={i}
-              data={getCumulativeProgressFromData(dataValue)} />
-          )}
+          <Container className='pagination-container'>
+            <Row>
+              <Col>
+                <h4 className='habitview-subheader'>Show graph data for:</h4>
+              </Col>
+            </Row>
+            <Row>
+              <Col>
+                <Pagination className='pagination-selections'>
+                  {habit.dataValues.map((data, i) =>
+                    <Pagination.Item
+                      key={i}
+                      active={data === dataValue}
+                      onClick={() => setDataValue(habit.dataValues[i])}>
+                      {data.type}
+                    </Pagination.Item>
+                  )}
+                </Pagination>
+              </Col>
+            </Row>
+          </Container>
+          <h5 className='habitview-subheader'>Current progress</h5>
+          <LineChartComponent
+            data={getCumulativeProgressFromData(dataValue)} />
         </Container>
         <h5 className='habitview-subheader'>Daily progress</h5>
         <Container className='content-container'>
-          {habit.dataValues.map((dataValue, i) =>
-            <LineChartComponent
-              key={i}
-              data={getAllDataPointsFromDaily(dataValue)} />
-          )}
+          <LineChartComponent
+            data={getAllDataPointsFromDaily(dataValue)} />
         </Container>
       </Container>
       <Container className='button-container'>
         <Button>Add new graph</Button>
       </Container>
-    </Container>
+    </Container >
   )
 }
 

@@ -20,6 +20,16 @@
     margin: 10px;
 }
 
+.navbar {
+    padding-left: 80px;
+}
+
+.navbar-brand:hover {
+    color: white;
+}
+
+/* Form styles */
+
 .form-header {
     padding: 10px;
     margin: 10px;
@@ -150,6 +160,17 @@ input[type=number] {
 
 .progressbar-text {
     margin: 5px;
+    display: flex;
+    justify-content: center;
+}
+
+.pagination-container {
+    margin-top: 20px;
+    display: inline-block;
+    text-align: center;
+}
+
+.pagination-selections {
     display: flex;
     justify-content: center;
 }
