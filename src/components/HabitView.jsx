@@ -40,50 +40,53 @@ const HabitView = ({ habit, setView, deleteHabit }) => {
     )
   }
 
-  const getCumulativeArray = (dataPoints) => {
-    let cumulativeArray = []
-    dataPoints.reduce((item, sum) => {
-      const result = item + sum
+  const getDailyProgress = (dataValue) => {
+    const dailyProgress = {}
+    dataValue.dataPoints.forEach(dataPoint =>
+      dailyProgress[getFormattedDate(dataPoint.date)]
+        ? dailyProgress[getFormattedDate(dataPoint.date)] += parseInt(dataPoint.value)
+        : dailyProgress[getFormattedDate(dataPoint.date)] = parseInt(dataPoint.value)
+    )
+    return dailyProgress
+  }
+
+  const getCumulativeProgressFromDaily = (dailyProgress) => {
+    const values = Object.values(dailyProgress)
+    const cumulativeArray = []
+    values.reduce((value, sum) => {
+      const result = value + sum
       cumulativeArray.push(result)
       return result
     }, 0)
     return cumulativeArray
   }
 
-  const getCumulativeProgress = () => {
+  const getCumulativeProgressFromData = (dataValue) => {
+    const dailyProgress = getDailyProgress(dataValue)
     const data = {
-      labels: getDates(habit.dataValues[0]),
-      datasets: []
+      labels: Object.keys(dailyProgress),
+      datasets: [
+        {
+          label: dataValue.type,
+          values: getCumulativeProgressFromDaily(dailyProgress)
+        }
+      ]
     }
-
-    habit.dataValues.forEach(value => {
-      const dataset = {
-        label: value.type,
-        values: getCumulativeArray(value.dataPoints
-          .map(data => parseInt(data.value)))
-      }
-      data.datasets.push(dataset)
-    })
 
     return data
   }
 
-  const getDates = (dataValue) =>
-    dataValue.dataPoints.map(data => getFormattedDate(data.date))
-
-  const getAllDataPoints = () => {
+  const getAllDataPointsFromDaily = (dataValue) => {
+    const dailyProgress = getDailyProgress(dataValue)
     const data = {
-      labels: getDates(habit.dataValues[0]),
-      datasets: []
+      labels: Object.keys(dailyProgress),
+      datasets: [
+        {
+          label: dataValue.type,
+          values: Object.values(dailyProgress)
+        }
+      ]
     }
-
-    habit.dataValues.forEach(value => {
-      const dataset = {
-        label: value.type,
-        values: value.dataPoints.map(data => parseInt(data.value))
-      }
-      data.datasets.push(dataset)
-    })
 
     return data
   }
@@ -100,7 +103,11 @@ const HabitView = ({ habit, setView, deleteHabit }) => {
         <Container className='habitview-button-bar'>
           <Row>
             <Col className='habitview-button-col'>
-              <Button className='habitview-button' variant='outline-primary' >Modify settings</Button>
+              <Button
+                className='habitview-button'
+                variant='outline-primary' >
+                Modify settings
+              </Button>
             </Col>
             <Col className='habitview-button-col'>
               <Button
@@ -126,11 +133,19 @@ const HabitView = ({ habit, setView, deleteHabit }) => {
         {renderProgressBars()}
         <h5 className='habitview-subheader'>Current progress</h5>
         <Container className='content-container'>
-          <LineChartComponent data={getCumulativeProgress()} />
+          {habit.dataValues.map((dataValue, i) =>
+            <LineChartComponent
+              key={i}
+              data={getCumulativeProgressFromData(dataValue)} />
+          )}
         </Container>
         <h5 className='habitview-subheader'>Daily progress</h5>
         <Container className='content-container'>
-          <LineChartComponent data={getAllDataPoints()} />
+          {habit.dataValues.map((dataValue, i) =>
+            <LineChartComponent
+              key={i}
+              data={getAllDataPointsFromDaily(dataValue)} />
+          )}
         </Container>
       </Container>
       <Container className='button-container'>
