@@ -2,6 +2,7 @@ import { useState } from 'react'
 import { Card, Container, Col, Button, Row } from 'react-bootstrap'
 import DailyProgress from './DailyProgress'
 import DataPointForm from './DataPointForm'
+import CheckForm from './CheckForm'
 
 const Home = ({
   habits,
@@ -56,7 +57,10 @@ const Home = ({
               <Card key={habit.id} className='habit-card'>
                 <Container>
                   <Row>
-                    <Col xs='7' className='habitcard-column-habit' onClick={() => showHabit(habit)}>
+                    <Col
+                      xs='7'
+                      className='habitcard-column-habit'
+                      onClick={() => showHabit(habit)}>
                       {habit.name}
                     </Col>
                     <Col xs='2'>
@@ -69,10 +73,13 @@ const Home = ({
                       </Button>
                     </Col>
                   </Row>
-                  {showForm[i] &&
-                    <DataPointForm
-                      habit={habit}
-                      addDataToHabit={addDataToHabit} />
+                  {showForm[i]
+                    ? habit.dataValues.length > 0
+                      ? <DataPointForm
+                        habit={habit}
+                        addDataToHabit={addDataToHabit} />
+                      : <CheckForm habit={habit} updateHabit={updateHabit} />
+                    : <></>
                   }
                 </Container>
               </Card>

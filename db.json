@@ -217,6 +217,24 @@
         }
       ],
       "id": 2872
+    },
+    {
+      "name": "Make bed",
+      "dataValues": [],
+      "default": {
+        "dataPoints": [
+          "2023-12-30T20:38:30.207Z"
+        ]
+      },
+      "id": 309
+    },
+    {
+      "name": "Brush teeth",
+      "dataValues": [],
+      "default": {
+        "dataPoints": []
+      },
+      "id": 6279
     }
   ]
 }

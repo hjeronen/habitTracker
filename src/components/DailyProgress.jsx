@@ -29,7 +29,17 @@ const DailyProgress = ({ habit }) => {
     return Math.floor(average)
   }
 
-  const todaysProgress = getTodaysProgressInAllDataValues()
+  const getIfDoneToday = () => {
+    const today = getFormattedDate(new Date)
+    if (habit.default.dataPoints.find(date => getFormattedDate(date) === today)) {
+      return 100
+    }
+    return 0
+  }
+
+  const todaysProgress = habit.dataValues.length > 0
+    ? getTodaysProgressInAllDataValues()
+    : getIfDoneToday()
 
   return (
     <Container className='progressbar-container'>

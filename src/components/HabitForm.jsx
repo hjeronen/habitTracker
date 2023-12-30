@@ -18,6 +18,10 @@ const HabitForm = ({ createNew, setView }) => {
       dataValues
     }
 
+    if (dataValues.length === 0) {
+      newHabit.default = { dataPoints: [] }
+    }
+
     createNew(newHabit)
   }
 
