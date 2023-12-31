@@ -106,7 +106,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col className='text-p'>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define targets and goals for data values.
                     </Tooltip>}>
@@ -126,7 +126,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col className='text-p'>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define a target value you want to reach (e.g. run 1000 kilometers).
                     </Tooltip>}>
@@ -173,7 +173,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col className='text-p'>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define a daily goal you want to reach (e.g. run 2 kilometers).
                     </Tooltip>}>
@@ -220,7 +220,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col className='text-p'>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define milestones for data values.
                     </Tooltip>}>

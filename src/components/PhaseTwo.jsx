@@ -36,7 +36,7 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
                     </Col>
                     <Col className='text-p'>
                       <OverlayTrigger
-                        placement='right'
+                        placement='left'
                         overlay={<Tooltip>Add data values to track</Tooltip>}>
                         <InfoCircle />
                       </OverlayTrigger>
@@ -61,7 +61,7 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define type of the data value (e.g. Distance).
                     </Tooltip>}>
@@ -84,7 +84,7 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
                 </Col>
                 <Col>
                   <OverlayTrigger
-                    placement='right'
+                    placement='left'
                     overlay={<Tooltip>
                       Define unit for the data value (e.g. meters).
                     </Tooltip>}>

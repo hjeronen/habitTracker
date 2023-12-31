@@ -126,6 +126,21 @@ input[type=number] {
     text-align: left;
 }
 
+.tooltip > .tooltip-inner {
+    border: 1px solid #0481fe;
+    background-color: #fff;
+    color: #000222;
+}
+
+.tooltip.show {
+    opacity: 1;
+}
+
+.tooltip > .tooltip-arrow::before {
+    border-right-color: #0481fe !important;
+    border-left-color: #0481fe !important;
+}
+
 /* HabitView */
 
 .habitview-header {

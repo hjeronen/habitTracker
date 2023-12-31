@@ -37,7 +37,7 @@ const HabitView = ({ habit, setView, deleteHabit }) => {
                 <Col key={i} style={{ width: 150, height: 150 }}>
                   <CircularProgressbar value={percentage} text={`${percentage}%`} />
                   <p className='progressbar-text'>{value.type}</p>
-                  <p className='progressbar-text'>{progress} {value.unit}</p>
+                  <p className='progressbar-text'>{progress}/{value.goal} {value.unit}</p>
                 </Col>
               )
             }
