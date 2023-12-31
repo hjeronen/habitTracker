@@ -15,7 +15,7 @@ const DataPoints = ({ habit, setView, updateHabit }) => {
   }
 
   const renderDataPoints = () => {
-    if (habit.dataValues.lenght > 0) {
+    if (habit.dataValues.length > 0) {
       return (
         habit.dataValues.map((dataValue, i) =>
           <Card key={i}>
@@ -30,10 +30,10 @@ const DataPoints = ({ habit, setView, updateHabit }) => {
                       {dataPoint.date}
                     </td>
                     <td>
-                      {dataPoint.value}
+                      {dataPoint.value} {dataValue.unit}
                     </td>
                     <td>
-                      <Button onClick={() => deleteEntry(i, j)}>Delete entry</Button>
+                      <Button variant='danger' onClick={() => deleteEntry(i, j)}>Delete entry</Button>
                     </td>
                   </tr>
                 )}
