@@ -1,5 +1,14 @@
 import { useState } from 'react'
-import { Button, Card, Container, Col, Row } from 'react-bootstrap'
+import {
+  Button,
+  Card,
+  Container,
+  Col,
+  OverlayTrigger,
+  Row,
+  Tooltip
+} from 'react-bootstrap'
+import { InfoCircle } from 'react-bootstrap-icons'
 
 const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
   const [selectedTargets, setSelectedTargets] = useState(dataValues.map(() => false))
@@ -90,12 +99,42 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
       <Card>
         <Card.Header>
           <Card.Title>
-            3. Set targets
+            <Container className='card-title-container'>
+              <Row>
+                <Col>
+                  3. Set targets
+                </Col>
+                <Col className='text-p'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define targets and goals for data values.
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Container>
           </Card.Title>
         </Card.Header>
         <Card>
           <Card.Header>
-            All time targets
+            <Container>
+              <Row>
+                <Col className='text-p-left'>
+                  All time targets
+                </Col>
+                <Col className='text-p'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define a target value you want to reach (e.g. run 1000 kilometers).
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Container>
           </Card.Header>
           <Card.Body>
             {dataValues.map((data, i) =>
@@ -127,7 +166,22 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
         </Card>
         <Card>
           <Card.Header>
-            Daily goals
+            <Container>
+              <Row>
+                <Col className='text-p-left'>
+                  Daily goals
+                </Col>
+                <Col className='text-p'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define a daily goal you want to reach (e.g. run 2 kilometers).
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Container>
           </Card.Header>
           <Card.Body>
             {dataValues.map((data, i) =>
@@ -159,9 +213,54 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
         </Card>
         <Card>
           <Card.Header>
-            Milestones
+            <Container>
+              <Row>
+                <Col className='text-p-left'>
+                  Milestones
+                </Col>
+                <Col className='text-p'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define milestones for data values.
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Container>
           </Card.Header>
           <Card.Body>
+            <Container>
+              <Row className='text-p-left'>
+                <Col sm='3'>
+                Even
+                </Col>
+                <Col className='text-p-left'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Milestone reached at regular intervals, define interval value.
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+              <Row className='text-p-left'>
+                <Col sm='3'>
+                Increasing
+                </Col>
+                <Col className='text-p-left'>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Distance between milestones increases exponentially, define starting value.
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
+              </Row>
+            </Container>
             {dataValues.map((data, i) =>
               <Card key={i}>
                 <Container>

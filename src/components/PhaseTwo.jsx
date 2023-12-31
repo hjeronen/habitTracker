@@ -1,5 +1,6 @@
 import { useState } from 'react'
-import { Button, Card, Container, Col, Row } from 'react-bootstrap'
+import { Button, Card, Container, Col, OverlayTrigger, Row, Tooltip } from 'react-bootstrap'
+import { InfoCircle } from 'react-bootstrap-icons'
 
 const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
   const [type, setType] = useState('')
@@ -28,11 +29,24 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
           <Card>
             <Card.Header>
               <Card.Title>
-                2. Set tracked data values
+                <Container className='card-title-container'>
+                  <Row>
+                    <Col>
+                      2. Set tracked data values
+                    </Col>
+                    <Col className='text-p'>
+                      <OverlayTrigger
+                        placement='right'
+                        overlay={<Tooltip>Add data values to track</Tooltip>}>
+                        <InfoCircle />
+                      </OverlayTrigger>
+                    </Col>
+                  </Row>
+                </Container>
               </Card.Title>
             </Card.Header>
             <Container className='content-container'>
-              <Row>
+              <Row className='align-items-center'>
                 <Col sm='2' className='form-col'>
                   <p className='text-p'>Type:</p>
                 </Col>
@@ -45,8 +59,17 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
                     onChange={({ target }) => setType(target.value)}
                   />
                 </Col>
+                <Col>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define type of the data value (e.g. Distance).
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
               </Row>
-              <Row>
+              <Row className='align-items-center'>
                 <Col sm='2' className='form-col'>
                   <p className='text-p'>Unit:</p>
                 </Col>
@@ -59,6 +82,15 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
                     onChange={({ target }) => setUnit(target.value)}
                   />
                 </Col>
+                <Col>
+                  <OverlayTrigger
+                    placement='right'
+                    overlay={<Tooltip>
+                      Define unit for the data value (e.g. meters).
+                    </Tooltip>}>
+                    <InfoCircle />
+                  </OverlayTrigger>
+                </Col>
               </Row>
               <Row>
                 <Col md='12' className='next-button'>
@@ -70,12 +102,16 @@ const PhaseTwo = ({ dataValues, setDataValues, setPhase }) => {
               {dataValues.map((data, i) =>
                 <Card key={i} className='habit-card'>
                   <Container>
-                    <Row>
-                      <Col xs={12} md={8} className='habit'>
-                        {data.type} {data.unit}
+                    <Row className='align-items-center'>
+                      <Col md={9} style={{ paddingLeft: '20px' }}>
+                        {data.type} {'(' + data.unit + ')'}
                       </Col>
-                      <Col xs={3} md={2} className='button-column'>
-                        <Button onClick={() => deleteData(i)}>Delete</Button>
+                      <Col md={2} className='button-column'>
+                        <Button
+                          variant='outline-danger'
+                          onClick={() => deleteData(i)}>
+                          Delete
+                        </Button>
                       </Col>
                     </Row>
                   </Container>

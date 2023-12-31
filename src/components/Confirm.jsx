@@ -50,7 +50,7 @@ const Confirm = ({ name, dataValues, setPhase }) => {
             <Button onClick={() => setPhase('three')}>Back</Button>
           </Col>
           <Col className='next-button'>
-            <Button type='submit'>Create</Button>
+            <Button variant='success' type='submit'>Create</Button>
           </Col>
         </Row>
       </Container>

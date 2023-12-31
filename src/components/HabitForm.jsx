@@ -45,7 +45,11 @@ const HabitForm = ({ createNew, setView }) => {
       <Container className='form-header'>
         <Row>
           <Col sm='2'>
-            <Button onClick={() => setView('home')}>Cancel</Button>
+            <Button
+              variant='outline-danger'
+              onClick={() => setView('home')}>
+              Cancel
+            </Button>
           </Col>
           <Col sm='8' className='subheader'>
             <h2>Create a New Habit</h2>

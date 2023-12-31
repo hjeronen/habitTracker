@@ -89,7 +89,11 @@ const Home = ({
       <Container className='button-container'>
         <Row>
           <Col className='next-button'>
-            <Button onClick={() => setView('form')}>Add new</Button>
+            <Button
+              variant='success'
+              onClick={() => setView('form')}>
+              Add new
+            </Button>
           </Col>
         </Row>
       </Container>

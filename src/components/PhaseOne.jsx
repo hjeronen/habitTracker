@@ -6,18 +6,32 @@ const PhaseOne = ({ name, setName, setPhase }) => {
       <Card>
         <Card.Header>
           <Card.Title>
-            1. Set name for habit
+            <Container className='card-title-container'>
+              <Row>
+                <Col>
+                  1. Set name for habit
+                </Col>
+              </Row>
+            </Container>
           </Card.Title>
         </Card.Header>
         <Container className='content-container'>
-          Name:
-          <input
-            type='text'
-            value={name}
-            name='Name'
-            id='name'
-            onChange={({ target }) => setName(target.value)}
-          />
+          <Row>
+            <Col style={{ marginBottom: '10px', paddingLeft: '20px' }}>
+              Name:
+            </Col>
+          </Row>
+          <Row>
+            <Col sm='11' style={{ paddingLeft: '20px' }}>
+              <input
+                type='text'
+                value={name}
+                name='Name'
+                id='name'
+                onChange={({ target }) => setName(target.value)}
+              />
+            </Col>
+          </Row>
         </Container>
       </Card>
       <Container className='button-container'>

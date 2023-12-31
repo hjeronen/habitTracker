@@ -120,6 +120,12 @@ input[type=number] {
     padding-right: 40px;
 }
 
+.card-title-container {
+    margin-top: 5px;
+    margin-bottom: -5px;
+    text-align: left;
+}
+
 /* HabitView */
 
 .habitview-header {
