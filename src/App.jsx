@@ -93,7 +93,7 @@ const App = () => {
           <Navbar.Brand className='headline-container'>HabitTracker</Navbar.Brand>
         </Container>
       </Navbar>
-      <Container>
+      <Container style={{ maxWidth: '800px' }}>
         {renderView()}
       </Container>
     </div>
