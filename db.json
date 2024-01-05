@@ -185,34 +185,6 @@
       "id": 2990
     },
     {
-      "name": "Writing",
-      "dataValues": [
-        {
-          "type": "Written pages",
-          "unit": "pages",
-          "dataPoints": [],
-          "target": "1000",
-          "milestones": {
-            "type": "even",
-            "value": "10"
-          },
-          "goal": "5"
-        },
-        {
-          "type": "Written words",
-          "unit": "words",
-          "dataPoints": [],
-          "target": "50000",
-          "goal": "2500",
-          "milestones": {
-            "type": "increasing",
-            "value": "10"
-          }
-        }
-      ],
-      "id": 2872
-    },
-    {
       "name": "Make bed",
       "dataValues": [],
       "default": {
@@ -222,16 +194,6 @@
         ]
       },
       "id": 309
-    },
-    {
-      "name": "Brush teeth",
-      "dataValues": [],
-      "default": {
-        "dataPoints": [
-          "2023-12-31T11:29:59.894Z"
-        ]
-      },
-      "id": 6279
     }
   ]
 }

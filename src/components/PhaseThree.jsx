@@ -16,7 +16,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
   const [selectedGoals, setSelectedGoals] = useState(dataValues.map(() => false))
   const [goals, setGoals] = useState(dataValues.map(() => 0))
   const [selectedMilestones, setSelectedMilestones] = useState(dataValues.map(() => false))
-  const [milestoneTypes, setMilestoneTypes] = useState(dataValues.map(() => ''))
+  const [milestoneTypes, setMilestoneTypes] = useState(dataValues.map(() => 'even'))
   const [milestoneValues, setMilestoneValues] = useState(dataValues.map(() => 0))
 
   const milestoneOptions = [
@@ -54,11 +54,11 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
     setSelectedMilestones(selected)
   }
 
+  // Set type (milestoneOptions[typeIndex]) for dataValue (valueIndex)
+  // For first dataValue, milestoneTypes[0] = 'even'
   const selectAMilestoneType = (valueIndex, typeIndex) => {
     let types = [...milestoneTypes]
-    milestoneTypes[valueIndex] === milestoneOptions[typeIndex]
-      ? types[valueIndex] = ''
-      : types[valueIndex] = milestoneOptions[typeIndex]
+    types[valueIndex] = milestoneOptions[typeIndex]
     setMilestoneTypes(types)
   }
 
@@ -277,7 +277,9 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                           <Col xs='1'>
                             <input
                               type='radio'
-                              name={data}
+                              checked={milestoneTypes[i] === milestoneOptions[j]}
+                              name={data.type}
+                              disabled={!selectedMilestones[i]}
                               onChange={() => selectAMilestoneType(i, j)}
                             />
                           </Col>
@@ -290,7 +292,7 @@ const PhaseThree = ({ dataValues, setDataValues, setPhase }) => {
                               value={milestoneTypes[i] === option ? milestoneValues[i] : ''}
                               name='milestoneValue'
                               id='milestoneValue'
-                              disabled={milestoneTypes[i] !== option}
+                              disabled={!(milestoneTypes[i] === option && selectedMilestones[i])}
                               onChange={({ target }) => setAMilestoneValue(i, target.value)}
                             />
                           </Col>
